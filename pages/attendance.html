@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attendance Folder</title>
+    <!-- SheetJS for displaying Excel files -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.3/xlsx.full.min.js"></script>
+    <!-- PDF.js for displaying PDF files -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .file-list {
+            margin-bottom: 20px;
+        }
+        .file-list a {
+            display: block;
+            margin-bottom: 10px;
+        }
+        #viewer {
+            width: 100%;
+            height: 500px;
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Attendance Folder</h1>
+<div class="file-list" id="file-list">Loading files...</div>
+
+<h2>File Viewer</h2>
+<div id="viewer">Select a file to view its content here.</div>
+
+<script>
+// GitHub API URL for the Attendance folder
+const apiUrl = 'https://api.github.com/repos/seccomm110/Al-Mahdi/contents/Attendance';
+
+// Function to fetch files from GitHub API
+async function fetchFiles() {
+    const response = await fetch(apiUrl);
+    const files = await response.json();
+    const fileListElement = document.getElementById('file-list');
+    fileListElement.innerHTML = ''; // Clear loading message
+
+    files.forEach(file => {
+        if (file.name.endsWith('.xlsx') || file.name.endsWith('.pdf')) {
+            const link = document.createElement('a');
+            link.href = '#';
+            link.textContent = file.name;
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                viewFile(file);
+            });
+            fileListElement.appendChild(link);
+        }
+    });
+}
+
+// Function to view the file
+function viewFile(file) {
+    const viewer = document.getElementById('viewer');
+    const fileUrl = file.download_url;
+
+    if (file.name.endsWith('.xlsx')) {
+        // Fetch and display Excel file
+        fetch(fileUrl)
+            .then(response => response.arrayBuffer())
+            .then(data => {
+                const workbook = XLSX.read(new Uint8Array(data), { type: "array" });
+                const sheet = workbook.Sheets[workbook.SheetNames[0]];
+                const html = XLSX.utils.sheet_to_html(sheet);
+                viewer.innerHTML = html;
+            });
+    } else if (file.name.endsWith('.pdf')) {
+        // Fetch and display PDF file
+        const pdfjsLib = window['pdfjs-dist/build/pdf'];
+        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.worker.min.js';
+        fetch(fileUrl)
+            .then(response => response.arrayBuffer())
+            .then(function (pdfData) {
+                const loadingTask = pdfjsLib.getDocument({ data: pdfData });
+                loadingTask.promise.then(function (pdf) {
+                    // Fetch the first page
+                    pdf.getPage(1).then(function (page) {
+                        const scale = 1.5;
+                        const viewport = page.getViewport({ scale: scale });
+
+                        // Prepare canvas using PDF page dimensions
+                        const canvas = document.createElement('canvas');
+                        const context = canvas.getContext('2d');
+                        canvas.height = viewport.height;
+                        canvas.width = viewport.width;
+                        viewer.innerHTML = ''; // Clear previous content
+                        viewer.appendChild(canvas);
+
+                        // Render PDF page into canvas context
+                        const renderContext = {
+                            canvasContext: context,
+                            viewport: viewport
+                        };
+                        page.render(renderContext);
+                    });
+                });
+            });
+    }
+}
+
+// Fetch files on page load
+fetchFiles();
+
+</script>
+
+</body>
+</html>

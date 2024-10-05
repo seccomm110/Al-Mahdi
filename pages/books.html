@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Books</title>
+    <script type="module" src="../js/fileViewer.js"></script>
+    <script type="module">
+        import { initializeFileViewer } from '../js/fileViewer.js';
+        window.onload = function() {
+            // Initialize the viewer for the Books folder
+            initializeFileViewer('Books');
+        }
+    </script>
+</head>
+<body>
+    <h1>Books</h1>
+    <div id="file-list">Loading files...</div>
+    <div id="viewer"></div>
+
+    <!-- PDF Viewer controls -->
+    <div class="pdf-controls">
+        <button id="prev-page">Previous Page</button>
+        <button id="next-page">Next Page</button>
+        <span>Page: <span id="page-num"></span> / <span id="page-count"></span></span>
+    </div>
+
+    <canvas id="canvas"></canvas>
+</body>
+</html>

@@ -4,15 +4,179 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Al Mahdi</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.9/xlsx.full.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        .card-container {
+            display: flex;
+            justify-content: center;
+            margin: 20px;
+        }
+        .card {
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 10px;
+            width: 200px; /* Set a fixed width for the cards */
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+            background-color: #f9f9f9;
+        }
+        .card h3 {
+            margin-top: 0;
+        }
+        a {
+            display: block;
+            margin: 5px 0;
+            text-decoration: none;
+            color: #007bff;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .content {
+            display: none; /* Hidden by default */
+            margin-top: 20px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            background-color: #f0f0f0;
+            text-align: left;
+        }
+        .quote {
+            margin: 20px;
+            font-style: italic;
+            font-size: 18px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ccc;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .close-button {
+            background-color: #ff4d4d; /* Red background */
+            color: white; /* White text */
+            border: none; /* No border */
+            border-radius: 5px; /* Rounded corners */
+            padding: 10px 20px; /* Padding */
+            cursor: pointer; /* Pointer cursor on hover */
+            margin-top: 20px; /* Space above */
+        }
+        .close-button:hover {
+            background-color: #e60000; /* Darker red on hover */
+        }
+    </style>
 </head>
 <body>
     <h1>This website is for Imam Mahdi a.s</h1>
-    <a href="pages/achievement.html">Achievement</a>
-    <a href="pages/articles.html">Articles</a>
-    <a href="pages/attendance.html">Attendance</a>
-    <a href="pages/books.html">Books</a>
-    <a href="pages/checklist.html">CheckList</a>
-    <a href="pages/minutesOfMeeting.html">MinutesOfMeeting</a>
+    
+    <div class="quote" id="quote"></div>
 
+    <div class="card-container" id="cardContainer">
+        <!-- Card 1 for 3 files -->
+        <div class="card">
+            <h3>Class Details</h3>
+            <a href="#" onclick="showContent('AUD1','Dashboard/AUD1- Class Detail.xlsx')">AUD1</a>
+            <a href="#" onclick="showContent('DS3', 'Dashboard/DS3 - Class Detail.xlsx')">DS3</a>
+            <a href="#" onclick="showContent('DS5', 'Dashboard/DS5 - Class Detail.xlsx')">DS5</a>
+        </div>
+        
+        <!-- Card 2 for 1 file -->
+        <div class="card">
+            <h3>Events</h3>
+            <a href="#" onclick="showContent('Another File', 'Dashboard/Event 2024.xlsx')">Event</a>
+        </div>
+        
+        <!-- Card 3 for 1 file -->
+        <div class="card">
+            <h3>Report</h3>
+            <a href="#" onclick="showContent('Sample PDF', 'path/to/file.pdf')">Sample PDF</a>
+        </div>
+    </div>
+
+    <div class="content" id="contentArea">
+        <button class="close-button" onclick="closeContent()">Close</button>
+        <div id="fileContent"></div>
+    </div>
+    
+    <nav>
+        <a href="pages/achievement.html">Achievement</a>
+        <a href="pages/articles.html">Articles</a>
+        <a href="pages/attendance.html">Attendance</a>
+        <a href="pages/books.html">Books</a>
+        <a href="pages/checklist.html">CheckList</a>
+        <a href="pages/minutesOfMeeting.html">MinutesOfMeeting</a>
+        <a href="pages/upload.html">Upload</a>
+        <a href="pages/bookmarks.html">Bookmarks</a>
+    </nav>
+
+    <script>
+        // Array of quotes
+        const quotes = [
+            "The earth is but one country, and mankind its citizens.",
+            "The best way to find yourself is to lose yourself in the service of others.",
+            "Service to others is the rent you pay for your room here on earth.",
+            "Act as if what you do makes a difference. It does.",
+            "The future belongs to those who believe in the beauty of their dreams."
+        ];
+
+        // Function to display a random quote
+        function displayQuote() {
+            const quoteElement = document.getElementById('quote');
+            const randomIndex = Math.floor(Math.random() * quotes.length);
+            quoteElement.textContent = quotes[randomIndex];
+        }
+
+        // Function to show content when a file is clicked
+        function showContent(fileName, filePath) {
+            const contentArea = document.getElementById('contentArea');
+            const fileContent = document.getElementById('fileContent');
+            contentArea.style.display = 'block';
+
+            // Check the file type based on the file extension
+            const extension = filePath.split('.').pop().toLowerCase();
+            if (extension === 'pdf') {
+                // Show PDF in iframe
+                fileContent.innerHTML = `<h2>${fileName}</h2><iframe src="${filePath}" width="100%" height="600px"></iframe>`;
+            } else if (extension === 'xlsx') {
+                // Show Excel content in a table
+                fetch(filePath)
+                    .then(response => response.arrayBuffer())
+                    .then(data => {
+                        const workbook = XLSX.read(data, { type: "array" });
+                        const sheetName = workbook.SheetNames[0];
+                        const sheet = workbook.Sheets[sheetName];
+                        const html = XLSX.utils.sheet_to_html(sheet);
+                        fileContent.innerHTML = `<h2>${fileName}</h2>${html}`;
+                    })
+                    .catch(error => {
+                        console.error('Error reading Excel file:', error);
+                        fileContent.innerHTML = `<h2>Error loading ${fileName}</h2><p>${error.message}</p>`;
+                    });
+            }
+
+            // Hide cards
+            document.getElementById('cardContainer').style.display = 'none';
+        }
+
+        // Function to close content area and show cards again
+        function closeContent() {
+            const contentArea = document.getElementById('contentArea');
+            contentArea.style.display = 'none';
+            document.getElementById('cardContainer').style.display = 'flex'; // Show cards again
+        }
+
+        // Initial call to display a random quote
+        displayQuote();
+    </script>
 </body>
 </html>

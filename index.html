@@ -9,76 +9,145 @@
         body {
             font-family: Arial, sans-serif;
             text-align: center;
+    background: linear-gradient(#ff6347, #ffcccb, #fff);
+
+            background: linear-gradient(135deg, #3a7bd5, #3a6073); 
+            color: #fff;
+            padding: 20px;
+            margin: 0;
         }
+.a{
+
+}
+        h1 {
+            font-size: 36px;
+            font-family: 'Lalezar', cursive; /* Arabic-styled font */
+            color: #f5f5f5;
+        }
+
         .card-container {
             display: flex;
             justify-content: center;
+            flex-wrap: wrap;
             margin: 20px;
         }
+
         .card {
-            border: 1px solid #ccc;
+            border: 1px solid #fff;
             border-radius: 8px;
             padding: 20px;
             margin: 10px;
-            width: 200px; /* Set a fixed width for the cards */
-            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
-            background-color: #f9f9f9;
+            width: 200px;
+            box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
+            background-color: rgba(255, 255, 255, 0.1); /* Lighter background for contrast */
+            transition: transform 0.3s, background-color 0.3s; /* Smooth hover effect */
         }
+
+        .card:hover {
+            background-color: rgba(255, 255, 255, 0.3); /* Slightly lighter on hover */
+            transform: scale(1.05); /* Slight zoom on hover */
+        }
+
         .card h3 {
             margin-top: 0;
+            color: #ffcccb; /* Light pink color for headings */
         }
+
         a {
             display: block;
             margin: 5px 0;
             text-decoration: none;
-            color: #007bff;
+            color: #ffd700; /* Gold color for links */
         }
+
         a:hover {
             text-decoration: underline;
+            color: #fff; /* White on hover */
         }
+
         .content {
             display: none; /* Hidden by default */
             margin-top: 20px;
             padding: 20px;
             border: 1px solid #ccc;
             border-radius: 8px;
-            background-color: #f0f0f0;
+            background-color: rgba(0, 0, 0, 0.8);
             text-align: left;
+            color: #f5f5f5;
         }
+
         .quote {
             margin: 20px;
             font-style: italic;
             font-size: 18px;
+            color: #f0e68c; /* Light khaki for the quote */
         }
+
         table {
             width: 100%;
             border-collapse: collapse;
         }
+
         th, td {
             border: 1px solid #ccc;
             padding: 8px;
             text-align: left;
         }
+
         th {
-            background-color: #f2f2f2;
+            background-color: #333;
+            color: #fff;
         }
+
         .close-button {
-            background-color: #ff4d4d; /* Red background */
-            color: white; /* White text */
-            border: none; /* No border */
-            border-radius: 5px; /* Rounded corners */
-            padding: 10px 20px; /* Padding */
-            cursor: pointer; /* Pointer cursor on hover */
-            margin-top: 20px; /* Space above */
+            background-color: #ff4d4d;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+            margin-top: 20px;
         }
+
         .close-button:hover {
-            background-color: #e60000; /* Darker red on hover */
+            background-color: #e60000;
         }
+
+        nav {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: inline-flex; /* To display the links horizontally */
+        }
+
+        nav ul li {
+            margin: 0 10px;
+        }
+
+        nav ul li a {
+            padding: 10px 20px;
+            text-decoration: none;
+            color: #fff;
+            background-color: #ff7f50; /* Coral color for navigation buttons */
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        nav ul li a:hover {
+            background-color: #ff6347; /* Tomato color on hover */
+        }
+
     </style>
 </head>
 <body>
+    <div class="a">
     <h1>This website is for Imam Mahdi a.s</h1>
-    
+
     <div class="quote" id="quote"></div>
 
     <div class="card-container" id="cardContainer">
@@ -93,7 +162,7 @@
         <!-- Card 2 for 1 file -->
         <div class="card">
             <h3>Events</h3>
-            <a href="#" onclick="showContent('Another File', 'Dashboard/Event 2024.xlsx')">Event</a>
+            <a href="#" onclick="showContent('Event', 'Dashboard/Event 2024.xlsx')">Event</a>
         </div>
         
         <!-- Card 3 for 1 file -->
@@ -109,18 +178,19 @@
     </div>
     
     <nav>
-        <a href="pages/achievement.html">Achievement</a>
-        <a href="pages/articles.html">Articles</a>
-        <a href="pages/attendance.html">Attendance</a>
-        <a href="pages/books.html">Books</a>
-        <a href="pages/checklist.html">CheckList</a>
-        <a href="pages/minutesOfMeeting.html">MinutesOfMeeting</a>
-        <a href="pages/upload.html">Upload</a>
-        <a href="pages/bookmarks.html">Bookmarks</a>
+        <ul>
+            <li><a href="pages/achievement.html">Achievement</a></li>
+            <li><a href="pages/articles.html">Articles</a></li>
+            <li><a href="pages/attendance.html">Attendance</a></li>
+            <li><a href="pages/books.html">Books</a></li>
+            <li><a href="pages/checklist.html">CheckList</a></li>
+            <li><a href="pages/minutesOfMeeting.html">MinutesOfMeeting</a></li>
+            <li><a href="pages/upload.html">Upload</a></li>
+            <li><a href="pages/bookmarks.html">Bookmarks</a></li>
+        </ul>
     </nav>
 
     <script>
-        // Array of quotes
         const quotes = [
             "The earth is but one country, and mankind its citizens.",
             "The best way to find yourself is to lose yourself in the service of others.",
@@ -129,26 +199,21 @@
             "The future belongs to those who believe in the beauty of their dreams."
         ];
 
-        // Function to display a random quote
         function displayQuote() {
             const quoteElement = document.getElementById('quote');
             const randomIndex = Math.floor(Math.random() * quotes.length);
             quoteElement.textContent = quotes[randomIndex];
         }
 
-        // Function to show content when a file is clicked
         function showContent(fileName, filePath) {
             const contentArea = document.getElementById('contentArea');
             const fileContent = document.getElementById('fileContent');
             contentArea.style.display = 'block';
 
-            // Check the file type based on the file extension
             const extension = filePath.split('.').pop().toLowerCase();
             if (extension === 'pdf') {
-                // Show PDF in iframe
                 fileContent.innerHTML = `<h2>${fileName}</h2><iframe src="${filePath}" width="100%" height="600px"></iframe>`;
             } else if (extension === 'xlsx') {
-                // Show Excel content in a table
                 fetch(filePath)
                     .then(response => response.arrayBuffer())
                     .then(data => {
@@ -159,24 +224,20 @@
                         fileContent.innerHTML = `<h2>${fileName}</h2>${html}`;
                     })
                     .catch(error => {
-                        console.error('Error reading Excel file:', error);
                         fileContent.innerHTML = `<h2>Error loading ${fileName}</h2><p>${error.message}</p>`;
                     });
             }
 
-            // Hide cards
             document.getElementById('cardContainer').style.display = 'none';
         }
 
-        // Function to close content area and show cards again
         function closeContent() {
-            const contentArea = document.getElementById('contentArea');
-            contentArea.style.display = 'none';
-            document.getElementById('cardContainer').style.display = 'flex'; // Show cards again
+            document.getElementById('contentArea').style.display = 'none';
+            document.getElementById('cardContainer').style.display = 'flex';
         }
 
-        // Initial call to display a random quote
         displayQuote();
     </script>
+    </div>
 </body>
 </html>

@@ -13,7 +13,7 @@
 
     <script type="module">
         import { initializeFileViewer } from '../js/fileViewer.js'; // Adjust path if necessary
-        
+
         document.addEventListener('DOMContentLoaded', function () {
             initializeFileViewer('Articles'); // Change this to the folder name you want
         });
@@ -22,25 +22,77 @@
     <style>
         body {
             font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #56ccf2, #2f80ed); /* Gradient background */
+            color: #fff; /* Light text color */
         }
+        
+        h1, h2 {
+            text-align: center;
+            color: #fff; /* Yellow color for headings */
+        }
+
         .file-list {
-            margin-bottom: 20px;
+            margin: 20px auto;
+            padding: 20px;
+            width: 80%;
+            max-width: 800px;
+            background-color: rgba(255, 255, 255, 0.2); /* Light transparent background */
+            border-radius: 8px;
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2); /* Slight shadow */
+            height: 300px; /* Fixed height for scrollable area */
+            overflow-y: scroll; /* Enable vertical scrolling */
         }
+
         .file-list a {
             display: block;
-            margin-bottom: 10px;
+            padding: 10px;
+            margin: 10px 0;
+            background-color: rgba(255, 255, 255, 0.2); /* Transparent background for links */
+            color: #fff; /* Yellow color for links */
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background-color 0.3s;
         }
+
+        .file-list a:hover {
+            background-color: rgba(255, 255, 255, 0.5); /* Lighter background on hover */
+        }
+
         #viewer {
-            width: 100%;
-            height: 500px;
-            border: 1px solid #ccc;
+            margin: 20px auto;
+            width: 80%;
+            max-width: 800px;
+            height: 600px; /* Set height for the viewer */
+            overflow-y: scroll; /* Enable scrolling for the canvas */
+            background-color: rgba(0, 0, 0, 0.8); /* Dark background for the viewer */
+            border: 1px solid #fff;
+            border-radius: 8px;
             position: relative;
         }
+
         #canvas {
-            width: 100%;
+            width: 100%; /* Ensure canvas fits the viewer width */
+            height: auto; /* Adjust height automatically */
         }
+
         .pdf-controls {
             margin-top: 10px;
+            text-align: center;
+        }
+
+        .pdf-controls button {
+            background-color: #fff; /* Yellow color for buttons */
+            color: #000;
+            border: none;
+            padding: 10px 20px;
+            margin: 0 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .pdf-controls button:hover {
+            background-color: #fff176; /* Lighter yellow on hover */
         }
     </style>
 </head>
@@ -52,11 +104,11 @@
 <h2>File Viewer</h2>
 <div id="viewer">
     <canvas id="canvas"></canvas>
-    <div class="pdf-controls">
-        <button id="prev-page">Previous Page</button>
-        <span>Page: <span id="page-num"></span> / <span id="page-count"></span></span>
-        <button id="next-page">Next Page</button>
-    </div>
+</div>
+<div class="pdf-controls">
+    <button id="prev-page">Previous Page</button>
+    <span>Page: <span id="page-num"></span> / <span id="page-count"></span></span>
+    <button id="next-page">Next Page</button>
 </div>
 
 </body>

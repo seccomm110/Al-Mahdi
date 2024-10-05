@@ -1,0 +1,121 @@
+body {
+    font-family: 'Arial', sans-serif;
+    text-align: center;
+    background-color: #f2f2f2; /* Light background for contrast */
+    color: #333; /* Dark text for readability */
+}
+
+h1 {
+    color: #007bff; /* Islamic blue color for the main heading */
+    font-size: 2.5em; /* Increased font size for emphasis */
+    margin: 20px 0; /* Space above and below the heading */
+}
+
+.card-container {
+    display: flex;
+    justify-content: center;
+    margin: 20px;
+}
+
+.card {
+    border: 1px solid #007bff; /* Blue border */
+    border-radius: 8px;
+    padding: 20px;
+    margin: 10px;
+    width: 220px; /* Set a fixed width for the cards */
+    box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.2); /* Slightly darker shadow for depth */
+    background-color: #ffffff; /* White background for cards */
+    transition: transform 0.2s; /* Animation for hover effect */
+}
+
+.card:hover {
+    transform: translateY(-5px); /* Lift effect on hover */
+}
+
+.card h3 {
+    margin-top: 0;
+    color: #007bff; /* Islamic blue for headings */
+}
+
+a {
+    display: block;
+    margin: 5px 0;
+    text-decoration: none;
+    color: #28a745; /* Green color for links */
+    transition: color 0.3s; /* Animation for color change */
+}
+
+a:hover {
+    text-decoration: underline;
+    color: #0056b3; /* Darker blue on hover */
+}
+
+.content {
+    display: none; /* Hidden by default */
+    margin-top: 20px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #ffffff; /* White background for content area */
+    text-align: left;
+}
+
+.quote {
+    margin: 20px;
+    font-style: italic;
+    font-size: 20px; /* Increased font size for quotes */
+    color: #6c757d; /* Gray color for quotes */
+    border-left: 4px solid #007bff; /* Decorative left border */
+    padding-left: 10px; /* Space between border and text */
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px; /* Space above table */
+}
+
+th, td {
+    border: 1px solid #007bff; /* Blue border for table cells */
+    padding: 10px; /* Increased padding for cells */
+    text-align: left;
+}
+
+th {
+    background-color: #e9ecef; /* Light gray background for table headers */
+}
+
+.close-button {
+    background-color: #ff4d4d; /* Red background */
+    color: white; /* White text */
+    border: none; /* No border */
+    border-radius: 5px; /* Rounded corners */
+    padding: 10px 20px; /* Padding */
+    cursor: pointer; /* Pointer cursor on hover */
+    margin-top: 20px; /* Space above */
+    transition: background-color 0.3s; /* Smooth transition */
+}
+
+.close-button:hover {
+    background-color: #e60000; /* Darker red on hover */
+}
+
+nav {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap; /* Wrap links in small screens */
+}
+
+nav a {
+    margin: 0 10px; /* Space between links */
+    padding: 10px 15px; /* Padding for links */
+    background-color: #007bff; /* Blue background for nav links */
+    color: white; /* White text */
+    border-radius: 5px; /* Rounded corners */
+    transition: background-color 0.3s; /* Smooth transition */
+}
+
+nav a:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}

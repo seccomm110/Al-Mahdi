@@ -5,6 +5,60 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Upload Files</title>
     <script src="../js/upload.js" defer></script> <!-- Link to the JS file -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            color: #333; /* Dark text color */
+            text-align: center; /* Center align text */
+            padding: 20px;
+        }
+
+        h1 {
+            color: #ff8c00; /* Orange color for heading */
+        }
+
+        form {
+            background-color: rgba(255, 255, 255, 0.9); /* Light opaque background */
+            border-radius: 8px;
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1); /* Slight shadow */
+            padding: 20px;
+            display: inline-block;
+        }
+
+        label {
+            display: block;
+            margin: 10px 0 5px;
+            font-weight: bold;
+        }
+
+        select, input[type="file"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            background-color: #ff8c00; /* Orange color for buttons */
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #ffb74d; /* Lighter orange on hover */
+        }
+
+        #upload-status {
+            margin-top: 20px;
+            font-weight: bold;
+            color: #ff8c00; /* Orange color for status */
+        }
+    </style>
 </head>
 <body>
     <h1>Upload Files to Specific Folder</h1>
@@ -16,7 +70,6 @@
             <option value="Attendance">Attendance</option>
             <option value="Articles">Articles</option>
             <option value="Books">Books</option>
-            <!-- <option value="CheckList">CheckList</option> -->
             <option value="Books/Adl">Adl</option>
             <option value="Books/Ahqaam">Ahqaam</option>
             <option value="Books/General">General</option>
@@ -32,12 +85,8 @@
             <!-- Add more options for other folders and subfolders -->
         </select>
 
-        <br><br>
-
         <label for="file-input">Choose File:</label>
         <input type="file" id="file-input" multiple>
-
-        <br><br>
 
         <button type="submit">Upload</button>
     </form>

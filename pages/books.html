@@ -16,13 +16,12 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background: linear-gradient(135deg, #56ccf2, #2f80ed); /* Gradient background */
-            color: #fff; /* Light text color */
+            color: #333; /* Dark text color */
             text-align: center; /* Center align text */
         }
         
         h1 {
-            color: #ffeb3b; /* Yellow color for heading */
+            color: #ff8c00; /* Orange color for heading */
         }
 
         #file-list {
@@ -30,11 +29,17 @@
             padding: 20px;
             width: 80%;
             max-width: 800px;
-            background-color: rgba(255, 255, 255, 0.2); /* Light transparent background */
+            background-color: rgba(255, 255, 255, 0.8); /* Light background */
             border-radius: 8px;
-            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2); /* Slight shadow */
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1); /* Slight shadow */
             height: 300px; /* Fixed height for scrollable area */
             overflow-y: scroll; /* Enable vertical scrolling */
+        }
+
+        a{
+            color: #ff8c00;
+            text-decoration: none;
+            text-align: left;
         }
 
         .pdf-controls {
@@ -42,8 +47,8 @@
         }
 
         .pdf-controls button {
-            background-color: #ffeb3b; /* Yellow color for buttons */
-            color: #000;
+            background-color: #ff8c00; /* Orange color for buttons */
+            color: #fff;
             border: none;
             padding: 10px 20px;
             margin: 0 10px;
@@ -53,24 +58,27 @@
         }
 
         .pdf-controls button:hover {
-            background-color: #fff176; /* Lighter yellow on hover */
+            background-color: #ffb74d; /* Lighter orange on hover */
         }
 
         #viewer {
             margin: 20px auto;
             width: 80%;
             max-width: 800px;
-            height: 500px; /* Set height for the viewer */
+            height: 700px; /* Set height for the viewer */
             overflow-y: scroll; /* Enable scrolling for the canvas */
-            background-color: rgba(0, 0, 0, 0.8); /* Dark background for the viewer */
-            border: 1px solid #ffeb3b;
+            background-color: rgba(255, 255, 255, 0.8); /* Light background for the viewer */
+            border: 1px solid #ff8c00; /* Orange border */
             border-radius: 8px;
+            overflow-y: auto;
+
             position: relative;
         }
 
         #canvas {
             width: 100%; /* Ensure canvas fits the viewer width */
             height: auto; /* Adjust height automatically */
+            
         }
     </style>
 </head>

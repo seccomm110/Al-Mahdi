@@ -5,15 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Al Mahdi</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.9/xlsx.full.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Lalezar&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: Arial, sans-serif;
             text-align: center;
-    background: linear-gradient(#ff6347, #ffcccb, #fff);
+            /*
+            background: linear-gradient(#ff6347, #ffcccb, #fff);
 
-            background: linear-gradient(135deg, #3a7bd5, #3a6073); 
-            color: #fff;
             padding: 20px;
+            color: #fff;
+            background: linear-gradient(135deg, #3a7bd5, #3a6073);  */
             margin: 0;
         }
 .a{
@@ -22,7 +24,7 @@
         h1 {
             font-size: 36px;
             font-family: 'Lalezar', cursive; /* Arabic-styled font */
-            color: #f5f5f5;
+            color: #333;
         }
 
         .card-container {
@@ -50,7 +52,7 @@
 
         .card h3 {
             margin-top: 0;
-            color: #ffcccb; /* Light pink color for headings */
+            color: #eed66e; /* Light pink color for headings */
         }
 
         a {
@@ -62,7 +64,7 @@
 
         a:hover {
             text-decoration: underline;
-            color: #fff; /* White on hover */
+            color: black; /* White on hover */
         }
 
         .content {
@@ -80,7 +82,7 @@
             margin: 20px;
             font-style: italic;
             font-size: 18px;
-            color: #f0e68c; /* Light khaki for the quote */
+            color: #333; /* Light khaki for the quote */
         }
 
         table {
@@ -114,6 +116,7 @@
         }
 
         nav {
+            
             margin-top: 20px;
             text-align: center;
         }
@@ -142,11 +145,65 @@
             background-color: #ff6347; /* Tomato color on hover */
         }
 
+        .bg-img{
+            z-index: 1;
+
+            height:350px;
+            background-image: url('imgs/bg1.png'); 
+            /* background-image: url('imgs/bg2.png');  */
+            /* background-image: url('imgs/bg3.png');  */
+            /* background-image: url('imgs/bg6.png');  */
+            /* background-image: url('imgs/bg7.png');  */
+            background-size: cover; /* Make the background cover the entire header */
+            background-position: center; /* Center the background image */
+            /* border-radius: 0px 0px 5px 5px; */
+        }
+        .header {
+            display: flex;
+            justify-content: space-between; /* Space between left and right content */
+            padding: 130px; /* Increased height */
+            
+            
+            color: #2F4F4F;
+            }
+
+            .arabic-text {
+                font-family: 'Lalezar', cursive;
+                }
     </style>
 </head>
 <body>
+
+    <header>
+    <div class="bg-img">   
+      
+        <div style="display: flex; justify-content: space-between;">
+            <div style="text-align: left;">
+    
+                <p class="ya-sahibaz-zamaan arabic-text">صلى الله عليك يا ولي العصر (عج) أدركنا</p>
+            </div>
+            <div style="text-align: right;">
+    
+                <p class="bismillah arabic-text">بسم الله الرحمن الرحيم</p>
+            </div></div>
+    </div>
+        <nav>
+        <ul>
+            <li><a href="pages/achievement.html">Achievement</a></li>
+            <li><a href="pages/articles.html">Articles</a></li>
+            <li><a href="pages/attendance.html">Attendance</a></li>
+            <li><a href="pages/books.html">Books</a></li>
+            <li><a href="pages/checklist.html">CheckList</a></li>
+            <li><a href="pages/minutesOfMeeting.html">MinutesOfMeeting</a></li>
+            <li><a href="pages/upload.html">Upload</a></li>
+            <li><a href="pages/bookmarks.html">Bookmarks</a></li>
+        </ul>
+    </nav>
+</header>
+
+
     <div class="a">
-    <h1>This website is for Imam Mahdi a.s</h1>
+    <h1>Secondary Commitee</h1>
 
     <div class="quote" id="quote"></div>
 
@@ -177,18 +234,6 @@
         <div id="fileContent"></div>
     </div>
     
-    <nav>
-        <ul>
-            <li><a href="pages/achievement.html">Achievement</a></li>
-            <li><a href="pages/articles.html">Articles</a></li>
-            <li><a href="pages/attendance.html">Attendance</a></li>
-            <li><a href="pages/books.html">Books</a></li>
-            <li><a href="pages/checklist.html">CheckList</a></li>
-            <li><a href="pages/minutesOfMeeting.html">MinutesOfMeeting</a></li>
-            <li><a href="pages/upload.html">Upload</a></li>
-            <li><a href="pages/bookmarks.html">Bookmarks</a></li>
-        </ul>
-    </nav>
 
     <script>
         const quotes = [

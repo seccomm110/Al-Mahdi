@@ -1,0 +1,74 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #ffffff; /* White background */
+    color: #333; /* Dark text color */
+}
+
+h1, h2 {
+    text-align: center;
+    color: #ff8c00; /* Orange color for headings */
+}
+
+.file-list {
+    margin: 20px auto;
+    padding: 20px;
+    width: 80%;
+    max-width: 800px;
+    background-color: rgba(255, 140, 0, 0.1); /* Light orange background */
+    border-radius: 8px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2); /* Slight shadow */
+    height: 300px; /* Fixed height for scrollable area */
+    overflow-y: scroll; /* Enable vertical scrolling */
+}
+
+.file-list a {
+    display: block;
+    padding: 10px;
+    margin: 10px 0;
+    background-color: rgba(255, 140, 0, 0.2); /* Transparent orange background for links */
+    color: #333; /* Dark color for links */
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+.file-list a:hover {
+    background-color: rgba(255, 140, 0, 0.4); /* Lighter orange on hover */
+}
+
+#viewer {
+    margin: 20px auto;
+    width: 80%;
+    max-width: 800px;
+    height: 600px; /* Set height for the viewer */
+    overflow-y: scroll; /* Enable scrolling for the canvas */
+    background-color: rgba(255, 255, 255, 0.8); /* Light background for the viewer */
+    border: 1px solid #ff8c00; /* Orange border */
+    border-radius: 8px;
+    position: relative;
+}
+
+#canvas {
+    width: 100%; /* Ensure canvas fits the viewer width */
+    height: auto; /* Adjust height automatically */
+}
+
+.pdf-controls {
+    margin-top: 10px;
+    text-align: center;
+}
+
+.pdf-controls button {
+    background-color: #ff8c00; /* Orange color for buttons */
+    color: #fff; /* White text color */
+    border: none;
+    padding: 10px 20px;
+    margin: 0 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.pdf-controls button:hover {
+    background-color: #ffb74d; /* Lighter orange on hover */
+}

@@ -9,9 +9,12 @@
             font-family: Arial, sans-serif;
             text-align: center;
             margin: 20px;
+            background-color: #ffffff; /* White background */
+            color: #333; /* Dark text color */
         }
         h1 {
             margin-bottom: 20px;
+            color: #ff8c00; /* Orange color */
         }
         #linkForm {
             margin-bottom: 20px;
@@ -20,10 +23,19 @@
             padding: 10px;
             width: 300px;
             margin-right: 10px;
+            border: 1px solid #ff8c00; /* Orange border */
+            border-radius: 5px;
         }
         input[type="submit"] {
             padding: 10px 20px;
             cursor: pointer;
+            background-color: #ff8c00; /* Orange button */
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+        input[type="submit"]:hover {
+            background-color: #ffb74d; /* Lighter orange on hover */
         }
         ul {
             list-style-type: none;
@@ -34,9 +46,12 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            background-color: rgba(255, 140, 0, 0.1); /* Light orange background for list items */
+            padding: 10px;
+            border-radius: 5px;
         }
         .delete-button {
-            background-color: #ff4d4d;
+            background-color: #ff4d4d; /* Red color */
             color: white;
             border: none;
             padding: 5px 10px;
@@ -44,7 +59,7 @@
             border-radius: 5px;
         }
         .edit-button {
-            background-color: #4CAF50;
+            background-color: #4CAF50; /* Green color */
             color: white;
             border: none;
             padding: 5px 10px;
@@ -71,16 +86,12 @@
     <script>
         const repoOwner = 'seccomm110'; // Replace with your GitHub username
         const repoName = 'Al-Mahdi'; // Replace with your GitHub repo name
-    // Split the token into different parts
-    const tokenPart1 = 'ghp_yj5ZnPqi54dV';
-    const tokenPart2 = '1PNEbN6w4p1K3scfYz';
-    const tokenPart3 = '3gckWa';
-
-    // Combine the token parts into one
-    const token = `${tokenPart1}${tokenPart2}${tokenPart3}`; // Reconstruct the full token
+        const tokenPart1 = 'ghp_yj5ZnPqi54dV';
+        const tokenPart2 = '1PNEbN6w4p1K3scfYz';
+        const tokenPart3 = '3gckWa';
+        const token = `${tokenPart1}${tokenPart2}${tokenPart3}`; // Reconstruct the full token
         const filePath = 'bookmarks.json'; // Update this based on your actual directory structure
 
-        // Function to fetch bookmarks from GitHub
         async function fetchBookmarks() {
             try {
                 const response = await fetch(`https://api.github.com/repos/${repoOwner}/${repoName}/contents/${filePath}`, {
@@ -102,7 +113,6 @@
             }
         }
 
-        // Function to add a bookmark
         async function addLink() {
             const nameInput = document.getElementById('nameInput');
             const linkInput = document.getElementById('linkInput');
@@ -121,7 +131,6 @@
             }
         }
 
-        // Function to save bookmarks to GitHub
         async function saveBookmarks(bookmarks) {
             const content = btoa(JSON.stringify(bookmarks)); // Encode the bookmarks array as base64
             const sha = await getFileSHA(); // Get the SHA of the file to update
@@ -157,7 +166,6 @@
             }
         }
 
-        // Function to get the file SHA for the update
         async function getFileSHA() {
             try {
                 const response = await fetch(`https://api.github.com/repos/${repoOwner}/${repoName}/contents/${filePath}`, {
@@ -173,7 +181,6 @@
             }
         }
 
-        // Function to get current bookmarks
         async function getBookmarks() {
             try {
                 const response = await fetch(`https://api.github.com/repos/${repoOwner}/${repoName}/contents/${filePath}`, {
@@ -192,7 +199,6 @@
             }
         }
 
-        // Function to add a bookmark to the list
         function addBookmarkToList(bookmark) {
             const bookmarkList = document.getElementById('bookmarkList');
             const listItem = document.createElement('li');
@@ -204,7 +210,6 @@
             linkElement.textContent = 'Open';
             linkElement.style.marginRight = '10px';
 
-            // Create a delete button
             const deleteButton = document.createElement('button');
             deleteButton.textContent = 'Delete';
             deleteButton.className = 'delete-button';
@@ -215,7 +220,6 @@
                 bookmarkList.removeChild(listItem);
             };
 
-            // Create an edit button
             const editButton = document.createElement('button');
             editButton.textContent = 'Edit';
             editButton.className = 'edit-button';
@@ -231,14 +235,12 @@
                 }
             };
 
-            // Append the link and buttons to the list item
             listItem.appendChild(linkElement);
             listItem.appendChild(editButton);
             listItem.appendChild(deleteButton);
             bookmarkList.appendChild(listItem);
         }
 
-        // Fetch bookmarks on page load
         window.onload = fetchBookmarks;
     </script>
 </body>

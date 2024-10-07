@@ -61,6 +61,7 @@
     <h1>My Bookmarks</h1>
     
     <div id="linkForm">
+        <input type="text" id="nameInput" placeholder="Enter name..." required>
         <input type="text" id="linkInput" placeholder="Enter your favorite link..." required>
         <input type="submit" value="Add Link" onclick="addLink()">
     </div>
@@ -68,104 +69,137 @@
     <ul id="bookmarkList"></ul>
 
     <script>
-        const githubUsername = 'seccomm110'; // Replace with your GitHub username
+        const repoOwner = 'seccomm110'; // Replace with your GitHub username
         const repoName = 'Al-Mahdi'; // Replace with your GitHub repo name
+    // Split the token into different parts
+    const tokenPart1 = 'ghp_yj5ZnPqi54dV';
+    const tokenPart2 = '1PNEbN6w4p1K3scfYz';
+    const tokenPart3 = '3gckWa';
 
-        // Split the token into different parts
-        const tokenPart1 = 'ghp_yj5ZnPqi54dV';
-        const tokenPart2 = '1PNEbN6w4p1K3scfYz';
-        const tokenPart3 = '3gckWa';
-
-        // Combine the token parts into one
-        const token = `${tokenPart1}${tokenPart2}${tokenPart3}`; // Reconstruct the full token
-        const filePath = 'bookmarks.json'; // Path to your JSON file
+    // Combine the token parts into one
+    const token = `${tokenPart1}${tokenPart2}${tokenPart3}`; // Reconstruct the full token
+        const filePath = 'bookmarks.json'; // Update this based on your actual directory structure
 
         // Function to fetch bookmarks from GitHub
         async function fetchBookmarks() {
-            const response = await fetch(`https://api.github.com/repos/${repoOwner}/${repoName}/contents/${filePath}`, {
-                headers: {
-                    'Authorization': `token ${token}`
-                }
-            });
-            const data = await response.json();
-            if (data && data.content) {
-                const bookmarks = JSON.parse(atob(data.content));
-                bookmarks.forEach(bookmark => {
-                    addBookmarkToList(bookmark);
+            try {
+                const response = await fetch(`https://api.github.com/repos/${repoOwner}/${repoName}/contents/${filePath}`, {
+                    headers: {
+                        'Authorization': `token ${token}`
+                    }
                 });
+                const data = await response.json();
+                if (response.ok && data && data.content) {
+                    const bookmarks = JSON.parse(atob(data.content));
+                    bookmarks.forEach(bookmark => {
+                        addBookmarkToList(bookmark);
+                    });
+                } else {
+                    console.error('Error fetching bookmarks:', data);
+                }
+            } catch (error) {
+                console.error('Fetch error:', error);
             }
         }
 
         // Function to add a bookmark
         async function addLink() {
+            const nameInput = document.getElementById('nameInput');
             const linkInput = document.getElementById('linkInput');
+            const nameValue = nameInput.value.trim();
             const linkValue = linkInput.value.trim();
 
-            if (linkValue) {
+            if (nameValue && linkValue) {
                 const bookmarks = await getBookmarks();
-                bookmarks.push(linkValue);
+                bookmarks.push({ name: nameValue, url: linkValue });
                 await saveBookmarks(bookmarks);
-                addBookmarkToList(linkValue);
+                addBookmarkToList({ name: nameValue, url: linkValue });
+                nameInput.value = ''; // Clear the input
                 linkInput.value = ''; // Clear the input
             } else {
-                alert('Please enter a valid link.');
+                alert('Please enter a valid name and link.');
             }
         }
 
         // Function to save bookmarks to GitHub
         async function saveBookmarks(bookmarks) {
-            const content = btoa(JSON.stringify(bookmarks));
-            const response = await fetch(`https://api.github.com/repos/${repoOwner}/${repoName}/contents/${filePath}`, {
-                method: 'PUT',
-                headers: {
-                    'Authorization': `token ${token}`,
-                    'Accept': 'application/vnd.github.v3+json'
-                },
-                body: JSON.stringify({
-                    message: 'Update bookmarks',
-                    content: content,
-                    sha: await getFileSHA() // Get the SHA of the file to update
-                })
-            });
+            const content = btoa(JSON.stringify(bookmarks)); // Encode the bookmarks array as base64
+            const sha = await getFileSHA(); // Get the SHA of the file to update
 
-            if (!response.ok) {
-                console.error('Error saving bookmarks:', response.statusText);
+            if (!sha) {
+                console.error('Unable to get SHA for the file.');
+                return;
+            }
+
+            try {
+                const response = await fetch(`https://api.github.com/repos/${repoOwner}/${repoName}/contents/${filePath}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Authorization': `token ${token}`,
+                        'Accept': 'application/vnd.github.v3+json'
+                    },
+                    body: JSON.stringify({
+                        message: 'Update bookmarks',
+                        content: content,
+                        sha: sha // Include the SHA for the file being updated
+                    })
+                });
+
+                if (!response.ok) {
+                    const errorData = await response.json();
+                    console.error('Error saving bookmarks:', response.statusText);
+                    console.error('Error details:', errorData);
+                } else {
+                    console.log('Bookmarks saved successfully!');
+                }
+            } catch (error) {
+                console.error('Error during saving bookmarks:', error);
             }
         }
 
         // Function to get the file SHA for the update
         async function getFileSHA() {
-            const response = await fetch(`https://api.github.com/repos/${repoOwner}/${repoName}/contents/${filePath}`, {
-                headers: {
-                    'Authorization': `token ${token}`
-                }
-            });
-            const data = await response.json();
-            return data.sha;
+            try {
+                const response = await fetch(`https://api.github.com/repos/${repoOwner}/${repoName}/contents/${filePath}`, {
+                    headers: {
+                        'Authorization': `token ${token}`
+                    }
+                });
+                const data = await response.json();
+                return data.sha;
+            } catch (error) {
+                console.error('Error fetching file SHA:', error);
+                return null;
+            }
         }
 
         // Function to get current bookmarks
         async function getBookmarks() {
-            const response = await fetch(`https://api.github.com/repos/${repoOwner}/${repoName}/contents/${filePath}`, {
-                headers: {
-                    'Authorization': `token ${token}`
+            try {
+                const response = await fetch(`https://api.github.com/repos/${repoOwner}/${repoName}/contents/${filePath}`, {
+                    headers: {
+                        'Authorization': `token ${token}`
+                    }
+                });
+                const data = await response.json();
+                if (data && data.content) {
+                    return JSON.parse(atob(data.content));
                 }
-            });
-            const data = await response.json();
-            if (data && data.content) {
-                return JSON.parse(atob(data.content));
+                return []; // Return an empty array if there's an error
+            } catch (error) {
+                console.error('Error fetching bookmarks:', error);
+                return [];
             }
-            return [];
         }
 
         // Function to add a bookmark to the list
         function addBookmarkToList(bookmark) {
             const bookmarkList = document.getElementById('bookmarkList');
             const listItem = document.createElement('li');
-            listItem.textContent = bookmark;
+            listItem.textContent = bookmark.name;
 
             const linkElement = document.createElement('a');
-            linkElement.href = bookmark;
+            linkElement.href = bookmark.url;
             linkElement.target = "_blank";
             linkElement.textContent = 'Open';
             linkElement.style.marginRight = '10px';
@@ -176,7 +210,7 @@
             deleteButton.className = 'delete-button';
             deleteButton.onclick = async function() {
                 const bookmarks = await getBookmarks();
-                const updatedBookmarks = bookmarks.filter(b => b !== bookmark);
+                const updatedBookmarks = bookmarks.filter(b => b.url !== bookmark.url);
                 await saveBookmarks(updatedBookmarks);
                 bookmarkList.removeChild(listItem);
             };
@@ -185,13 +219,15 @@
             const editButton = document.createElement('button');
             editButton.textContent = 'Edit';
             editButton.className = 'edit-button';
-            editButton.onclick = function() {
-                const newLink = prompt('Edit your link:', bookmark);
-                if (newLink) {
-                    const bookmarks = getBookmarks();
-                    const updatedBookmarks = bookmarks.map(b => (b === bookmark ? newLink : b));
-                    saveBookmarks(updatedBookmarks);
-                    listItem.firstChild.nodeValue = newLink; // Update displayed link
+            editButton.onclick = async function() {
+                const newName = prompt('Edit your link name:', bookmark.name);
+                const newUrl = prompt('Edit your link URL:', bookmark.url);
+                if (newName && newUrl) {
+                    const bookmarks = await getBookmarks();
+                    const updatedBookmarks = bookmarks.map(b => (b.url === bookmark.url ? { name: newName, url: newUrl } : b));
+                    await saveBookmarks(updatedBookmarks);
+                    listItem.firstChild.nodeValue = newName; // Update displayed name
+                    linkElement.href = newUrl; // Update displayed URL
                 }
             };
 

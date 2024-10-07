@@ -12,6 +12,15 @@
             background-color: #ffffff; /* White background */
             color: #333; /* Dark text color */
         }
+        a{
+            color:#fff;
+            text-decoration: none;
+            padding: 5px;
+            font-size:small;
+            background-color:violet;
+            border-radius: 5px;
+            border: violet 1px solid;
+        }
         h1 {
             margin-bottom: 20px;
             color: #ff8c00; /* Orange color */
@@ -70,9 +79,53 @@
         .delete-button:hover, .edit-button:hover {
             opacity: 0.8;
         }
+
+        /* Navigation styles */
+nav {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.nav-links {
+    display: inline-flex; /* Display links horizontally */
+    padding: 0;
+    margin: 0;
+}
+
+.nav-links a {
+    padding: 10px 20px;
+    text-decoration: none;
+    color: #fff;
+    background-color: #ff7f50; /* Coral color for navigation buttons */
+    border-radius: 5px;
+    margin: 0 10px; /* Margin between links */
+    transition: background-color 0.3s;
+}
+
+.nav-links a:hover {
+    background-color: #ff6347; /* Tomato color on hover */
+}
+
+
     </style>
 </head>
 <body>
+
+    <nav>
+        <div class="nav-links">
+            <a href="../index.html">Home</a>
+            <a href="achievement.html">Achievement</a>
+            <a href="articles.html">Articles</a>
+            <a href="attendance.html">Attendance</a>
+            <a href="books.html">Books</a>
+            <a href="checklist.html">CheckList</a>
+            <a href="minutesOfMeeting.html">MinutesOfMeeting</a>
+            <a href="upload.html">Upload</a>
+            <a href="bookmarks.html">Bookmarks</a>
+        </div>
+    </nav>
+        
+
     <h1>My Bookmarks</h1>
     
     <div id="linkForm">

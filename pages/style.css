@@ -1,3 +1,4 @@
+
 body {
     font-family: Arial, sans-serif;
     background-color: #ffffff; /* White background */
@@ -71,4 +72,60 @@ h1, h2 {
 
 .pdf-controls button:hover {
     background-color: #ffb74d; /* Lighter orange on hover */
+}
+
+nav {
+            
+    margin-top: 20px;
+    text-align: center;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: inline-flex; /* To display the links horizontally */
+}
+
+nav ul li {
+    margin: 0 10px;
+}
+
+nav ul li a {
+    padding: 10px 20px;
+    text-decoration: none;
+    color: #fff;
+    background-color: #ff7f50; /* Coral color for navigation buttons */
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+nav ul li a:hover {
+    background-color: #ff6347; /* Tomato color on hover */
+}
+
+
+
+nav .nav-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: inline-flex; /* To display the links horizontally */
+}
+
+nav .nav-links li {
+    margin: 0 10px;
+}
+
+nav .nav-links li a {
+    padding: 10px 20px;
+    text-decoration: none;
+    color: #fff;
+    background-color: #ff7f50; /* Coral color for navigation buttons */
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+nav .nav-links li a:hover {
+    background-color: #ff6347; /* Tomato color on hover */
 }

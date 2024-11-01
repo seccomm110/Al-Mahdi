@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="a.css">
+    <link rel="stylesheet" href="style.css">
+    <link sizes="64x64" rel="icon" href="../imgs/logo.png" type="image/png">
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Internal Program</title>
+
+    <!-- Include XLSX Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.4/xlsx.full.min.js"></script>
+    <!-- Include PDF.js Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.worker.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.4.2/mammoth.browser.min.js"></script>
+
+    
+
+    <style>
+  
+
+    </style>
+    <script type="module">
+        import { initializeFileViewer } from '../js/fileViewer.js'; // Adjust path if necessary
+
+        document.addEventListener('DOMContentLoaded', function () {
+            initializeFileViewer('Articles'); // Change this to the folder name you want
+        });
+    </script>
+
+</head>
+<body>
+    <div id="navbar-placeholder"></div>
+
+
+    <div class="container">
+        <div class="file-list" id="file-list">Loading files...</div>
+    
+        <!-- This is the canvas, hidden by default -->
+        <div id="viewer" style="display: none;"> 
+            <canvas id="canvas"></canvas>
+        </div>
+        
+    
+        
+        <div class="pdf-controls">
+            <button id="prev-page"></button>
+            <span> <span id="page-num"></span> <span id="page-count"></span></span>
+            <button id="next-page"></button>
+        </div>
+    </div>
+    
+
+    <script src="loadNavbar.js"></script>
+
+</body>
+</html>

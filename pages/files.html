@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <link sizes="64x64" rel="icon" href="../imgs/logo.png" type="image/png">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Files</title>
+
+    <!-- Include XLSX Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.4/xlsx.full.min.js"></script>
+    <!-- Include PDF.js Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.min.js"></script>
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.4.2/mammoth.browser.min.js"></script>
+
+
+    <script type="module">
+        import { initializeFileViewer } from '../js/fileViewer.js';
+        
+        document.addEventListener('DOMContentLoaded', function () {
+            const urlParams = new URLSearchParams(window.location.search);
+            const folder = urlParams.get('folder');
+            
+            if (folder) {
+                initializeFileViewer(folder);
+            } else {
+                document.getElementById('file-list').textContent = 'No folder specified.';
+            }
+        });
+    </script>
+
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+}
+
+#file-list {
+    margin-bottom: 20px;
+}
+
+a {
+    text-decoration: none;
+    color: #333;
+}
+
+button {
+    margin-left: 5px;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+button i {
+    margin-right: 5px; /* Space between icon and text */
+}
+
+button:hover {
+    opacity: 0.8; /* Slightly transparent on hover */
+}
+
+button:focus {
+    outline: none; /* Remove default focus outline */
+}
+
+/* Specific button colors */
+button.download {
+    background-color: #28a745; /* Green */
+    color: white;
+}
+
+button.share {
+    background-color: #007bff; /* Blue */
+    color: white;
+}
+
+button.delete {
+    background-color: #dc3545; /* Red */
+    color: white;
+}
+
+/* Viewer style */
+#viewer {
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin-top: 20px;
+    display: none; /* Hidden initially */
+}
+
+.pdf-controls {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.pdf-controls button {
+    background-color: #f8f9fa; /* Light gray */
+    border: 1px solid #ccc;
+}
+
+.pdf-controls button:hover {
+    background-color: #e2e6ea; /* Darker gray on hover */
+}
+
+.hidden {
+    display: none; /* Utility class for hiding elements */
+}
+
+    </style>
+</head>
+<body>
+    <div id="navbar-placeholder"></div>
+    <h1 style="padding:0px 7%; text-align: left;"><span id="folder-name"></span></h1>
+    <div class="container">
+        <div class="file-list" id="file-list">Loading files...</div>
+
+        <!-- Viewer for PDF or XLSX -->
+        <div id="viewer">
+            <canvas id="canvas"></canvas>
+            <div class="pdf-controls">
+                <button id="prev-page">Previous Page</button>
+                <span>Page: <span id="page-num"></span> / <span id="page-count"></span></span>
+                <button id="next-page">Next Page</button>
+            </div>
+            <div class="icon-buttons" id="icon-buttons"></div>
+        </div>
+    </div>
+    <script src="loadNavbar.js"></script>
+</body>
+</html>

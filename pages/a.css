@@ -1,0 +1,44 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    /* align-items: center;  */
+    margin: 20px; /* Add some margin around the container */
+}
+
+.file-list {
+    width: 100%; /* Set width to 100% */
+    max-width: 800px; /* Maximum width for better readability */
+    margin-bottom: 20px; /* Space below the file list */
+    padding: 10px; /* Padding for better spacing */
+    /* border: 1px solid #ccc; Optional border for visibility */
+    border-radius: 5px; /* Rounded corners */
+    background-color: #f9f9f9; /* Light background color */
+}
+
+.pdf-controls {
+    display: flex;
+    justify-content: space-between; /* Space between buttons */
+    width: 100%; /* Set width to 100% */
+    max-width: 400px; /* Maximum width for better readability */
+    margin-top: 10px; /* Space above controls */
+}
+
+button {
+    padding: 10px 15px; /* Padding for buttons */
+    margin: 0 5px; /* Space between buttons */
+    border: none; /* No border */
+    border-radius: 5px; /* Rounded corners */
+    /* background-color: #007BFF; Button background color */
+    color: white; /* Button text color */
+    cursor: pointer; /* Cursor changes to pointer on hover */
+    transition: background-color 0.3s; /* Smooth background transition */
+}
+
+button:hover {
+    background-color: #0056b3; /* Darker shade on hover */
+}
+
+#page-num {
+    margin: 0 10px; /* Space around the page number */
+    font-weight: bold; /* Make page number bold */
+}

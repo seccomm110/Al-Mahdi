@@ -1,3 +1,6 @@
+.container1 {
+    text-align: center;
+}
 
 body {
     font-family: Arial, sans-serif;
@@ -10,23 +13,36 @@ h1, h2 {
     color: #ff8c00; /* Orange color for headings */
 }
 
-.file-list {
-    margin: 20px auto;
+/* Container to align folder and file viewers side by side */
+.container {
+    display: flex;
+    justify-content: space-between;
+    max-width: 1200px; /* Increase as needed for more space */
+    margin: 0 auto;
     padding: 20px;
-    width: 80%;
-    max-width: 800px;
-    background-color: rgba(255, 140, 0, 0.1); /* Light orange background */
-    border-radius: 8px;
-    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2); /* Slight shadow */
-    height: 300px; /* Fixed height for scrollable area */
-    overflow-y: scroll; /* Enable vertical scrolling */
+}
+
+/* Folder Viewer (file list) styling - significantly narrower width */
+.file-list {
+    flex: 0.25; /* Set to about 25% of the container width */
+    margin-right: 20px;
+    height: 600px; /* Matches the height of the viewer */
+    overflow-y: auto;
+}
+
+/* File Viewer styling - significantly wider width */
+#viewer {
+    flex: 0.75; /* Set to about 75% of the container width */
+    height: 600px; /* Matches the folder viewer height */
+    overflow-y: scroll;
+    position: relative;
 }
 
 .file-list a {
     display: block;
     padding: 10px;
     margin: 10px 0;
-    background-color: rgba(255, 140, 0, 0.2); /* Transparent orange background for links */
+    /* background-color: rgba(255, 140, 0, 0.2); Transparent orange background for links */
     color: #333; /* Dark color for links */
     text-decoration: none;
     border-radius: 4px;
@@ -35,18 +51,6 @@ h1, h2 {
 
 .file-list a:hover {
     background-color: rgba(255, 140, 0, 0.4); /* Lighter orange on hover */
-}
-
-#viewer {
-    margin: 20px auto;
-    width: 80%;
-    max-width: 800px;
-    height: 600px; /* Set height for the viewer */
-    overflow-y: scroll; /* Enable scrolling for the canvas */
-    background-color: rgba(255, 255, 255, 0.8); /* Light background for the viewer */
-    border: 1px solid #ff8c00; /* Orange border */
-    border-radius: 8px;
-    position: relative;
 }
 
 #canvas {
@@ -60,7 +64,7 @@ h1, h2 {
 }
 
 .pdf-controls button {
-    background-color: #ff8c00; /* Orange color for buttons */
+    /* background-color: #ff8c00; Orange color for buttons */
     color: #fff; /* White text color */
     border: none;
     padding: 10px 20px;
@@ -70,12 +74,8 @@ h1, h2 {
     transition: background-color 0.3s;
 }
 
-.pdf-controls button:hover {
-    background-color: #ffb74d; /* Lighter orange on hover */
-}
 
 nav {
-            
     margin-top: 20px;
     text-align: center;
 }
@@ -104,28 +104,90 @@ nav ul li a:hover {
     background-color: #ff6347; /* Tomato color on hover */
 }
 
-
-
-nav .nav-links {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: inline-flex; /* To display the links horizontally */
-}
-
-nav .nav-links li {
-    margin: 0 10px;
-}
-
-nav .nav-links li a {
-    padding: 10px 20px;
-    text-decoration: none;
-    color: #fff;
-    background-color: #ff7f50; /* Coral color for navigation buttons */
-    border-radius: 5px;
+.share-button {
+    background-color: red; /* Red color for Share button */
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    margin-left: 10px;
+    border-radius: 4px;
+    cursor: pointer;
     transition: background-color 0.3s;
 }
 
-nav .nav-links li a:hover {
-    background-color: #ff6347; /* Tomato color on hover */
+.share-button:hover {
+    background-color: darkred; /* Darker red on hover */
+}
+
+.download-button {
+    background-color: green; /* Green color for Download button */
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    margin-left: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.download-button:hover {
+    background-color: darkgreen; /* Darker green on hover */
+}
+
+.delete-button {
+    /* background-color: blue; Blue color for Delete button */
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    margin-left: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column; /* Stack files and viewer vertically */
+        padding: 10px; /* Reduce padding */
+    }
+
+    .file-list {
+        flex: 1; /* Full width for file list */
+        margin-right: 0; /* Remove right margin */
+        height: auto; /* Auto height for flexibility */
+    }
+
+    #viewer {
+        flex: 1; /* Full width for viewer */
+        height: 400px; /* Adjust viewer height */
+    }
+
+    .pdf-controls {
+        flex-direction: column; /* Stack controls vertically */
+    }
+
+    .pdf-controls button {
+        margin: 5px 0; /* Adjust margin for buttons */
+    }
+}
+
+@media (max-width: 480px) {
+    h1, h2 {
+        font-size: 1.5em; /* Reduce heading size */
+    }
+
+    .pdf-controls button {
+        padding: 8px 10px; /* Smaller button size */
+    }
+
+    nav ul {
+        flex-direction: column; /* Stack navigation vertically */
+    }
+
+    nav ul li {
+        margin: 5px 0; /* Adjust margin for navigation */
+    }
 }

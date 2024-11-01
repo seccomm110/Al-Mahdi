@@ -1,29 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link sizes="64x64" rel="icon" href="../imgs/logo.png" type="image/png">
+    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Bookmarks</title>
+    <title>My Weblink</title>
     <style>
+        
         body {
-            font-family: Arial, sans-serif;
+            /* font-family: Arial, sans-serif; */
             text-align: center;
             margin: 20px;
-            background-color: #ffffff; /* White background */
-            color: #333; /* Dark text color */
-        }
-        a{
-            color:#fff;
-            text-decoration: none;
-            padding: 5px;
-            font-size:small;
-            background-color:violet;
-            border-radius: 5px;
-            border: violet 1px solid;
+            background-color: #ffffff;
+            color: #333;
         }
         h1 {
             margin-bottom: 20px;
-            color: #ff8c00; /* Orange color */
+            color: #ff8c00;
         }
         #linkForm {
             margin-bottom: 20px;
@@ -32,19 +26,19 @@
             padding: 10px;
             width: 300px;
             margin-right: 10px;
-            border: 1px solid #ff8c00; /* Orange border */
+            border: 1px solid #ff8c00;
             border-radius: 5px;
         }
         input[type="submit"] {
             padding: 10px 20px;
             cursor: pointer;
-            background-color: #ff8c00; /* Orange button */
+            background-color: #ff8c00;
             color: white;
             border: none;
             border-radius: 5px;
         }
         input[type="submit"]:hover {
-            background-color: #ffb74d; /* Lighter orange on hover */
+            background-color: #ffb74d;
         }
         ul {
             list-style-type: none;
@@ -55,78 +49,41 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background-color: rgba(255, 140, 0, 0.1); /* Light orange background for list items */
             padding: 10px;
             border-radius: 5px;
         }
-        .delete-button {
-            background-color: #ff4d4d; /* Red color */
-            color: white;
-            border: none;
+        /* Button container styling */
+        .button-container {
+            display: flex;
+            gap: 10px;
+        }
+        /* Button styling */
+        .button-container button, .button-container a {
             padding: 5px 10px;
             cursor: pointer;
-            border-radius: 5px;
-        }
-        .edit-button {
-            background-color: #4CAF50; /* Green color */
-            color: white;
             border: none;
-            padding: 5px 10px;
-            cursor: pointer;
+            color: white;
             border-radius: 5px;
-            margin-right: 10px;
+            text-decoration: none;
+            font-size: small;
         }
-        .delete-button:hover, .edit-button:hover {
+        .delete-button { background-color: #ff4d4d; } /* Red for Delete */
+        .edit-button { background-color: #4CAF50; } /* Green for Edit */
+        .copy-button { background-color: #008CBA; } /* Blue for Copy */
+        .open-button { background-color: #ff8c00; } /* Orange for Open */
+        /* Button hover effect */
+        .delete-button:hover, .edit-button:hover, .copy-button:hover, .open-button:hover {
             opacity: 0.8;
         }
-
-        /* Navigation styles */
-nav {
-    margin-top: 20px;
-    text-align: center;
-}
-
-.nav-links {
-    display: inline-flex; /* Display links horizontally */
-    padding: 0;
-    margin: 0;
-}
-
-.nav-links a {
-    padding: 10px 20px;
-    text-decoration: none;
-    color: #fff;
-    background-color: #ff7f50; /* Coral color for navigation buttons */
-    border-radius: 5px;
-    margin: 0 10px; /* Margin between links */
-    transition: background-color 0.3s;
-}
-
-.nav-links a:hover {
-    background-color: #ff6347; /* Tomato color on hover */
-}
-
-
+        ul li:hover {
+            background-color: #ccc;
+        }
     </style>
 </head>
 <body>
+    <div id="navbar-placeholder"></div>
 
-    <nav>
-        <div class="nav-links">
-            <a href="../index.html">Home</a>
-            <a href="achievement.html">Achievement</a>
-            <a href="articles.html">Articles</a>
-            <a href="attendance.html">Attendance</a>
-            <a href="books.html">Books</a>
-            <a href="checklist.html">CheckList</a>
-            <a href="minutesOfMeeting.html">MinutesOfMeeting</a>
-            <a href="upload.html">Upload</a>
-            <a href="bookmarks.html">Bookmarks</a>
-        </div>
-    </nav>
-        
-
-    <h1>My Bookmarks</h1>
+    <h1>WebLink</h1>
     
     <div id="linkForm">
         <input type="text" id="nameInput" placeholder="Enter name..." required>
@@ -142,15 +99,13 @@ nav {
         const tokenPart1 = 'ghp_yj5ZnPqi54dV';
         const tokenPart2 = '1PNEbN6w4p1K3scfYz';
         const tokenPart3 = '3gckWa';
-        const token = `${tokenPart1}${tokenPart2}${tokenPart3}`; // Reconstruct the full token
-        const filePath = 'bookmarks.json'; // Update this based on your actual directory structure
+        const token = `${tokenPart1}${tokenPart2}${tokenPart3}`;
+        const filePath = 'bookmarks.json';
 
         async function fetchBookmarks() {
             try {
                 const response = await fetch(`https://api.github.com/repos/${repoOwner}/${repoName}/contents/${filePath}`, {
-                    headers: {
-                        'Authorization': `token ${token}`
-                    }
+                    headers: { 'Authorization': `token ${token}` }
                 });
                 const data = await response.json();
                 if (response.ok && data && data.content) {
@@ -177,16 +132,16 @@ nav {
                 bookmarks.push({ name: nameValue, url: linkValue });
                 await saveBookmarks(bookmarks);
                 addBookmarkToList({ name: nameValue, url: linkValue });
-                nameInput.value = ''; // Clear the input
-                linkInput.value = ''; // Clear the input
+                nameInput.value = ''; 
+                linkInput.value = ''; 
             } else {
                 alert('Please enter a valid name and link.');
             }
         }
 
         async function saveBookmarks(bookmarks) {
-            const content = btoa(JSON.stringify(bookmarks)); // Encode the bookmarks array as base64
-            const sha = await getFileSHA(); // Get the SHA of the file to update
+            const content = btoa(JSON.stringify(bookmarks));
+            const sha = await getFileSHA();
 
             if (!sha) {
                 console.error('Unable to get SHA for the file.');
@@ -196,14 +151,11 @@ nav {
             try {
                 const response = await fetch(`https://api.github.com/repos/${repoOwner}/${repoName}/contents/${filePath}`, {
                     method: 'PUT',
-                    headers: {
-                        'Authorization': `token ${token}`,
-                        'Accept': 'application/vnd.github.v3+json'
-                    },
+                    headers: { 'Authorization': `token ${token}`, 'Accept': 'application/vnd.github.v3+json' },
                     body: JSON.stringify({
                         message: 'Update bookmarks',
                         content: content,
-                        sha: sha // Include the SHA for the file being updated
+                        sha: sha
                     })
                 });
 
@@ -222,9 +174,7 @@ nav {
         async function getFileSHA() {
             try {
                 const response = await fetch(`https://api.github.com/repos/${repoOwner}/${repoName}/contents/${filePath}`, {
-                    headers: {
-                        'Authorization': `token ${token}`
-                    }
+                    headers: { 'Authorization': `token ${token}` }
                 });
                 const data = await response.json();
                 return data.sha;
@@ -237,15 +187,13 @@ nav {
         async function getBookmarks() {
             try {
                 const response = await fetch(`https://api.github.com/repos/${repoOwner}/${repoName}/contents/${filePath}`, {
-                    headers: {
-                        'Authorization': `token ${token}`
-                    }
+                    headers: { 'Authorization': `token ${token}` }
                 });
                 const data = await response.json();
                 if (data && data.content) {
                     return JSON.parse(atob(data.content));
                 }
-                return []; // Return an empty array if there's an error
+                return []; 
             } catch (error) {
                 console.error('Error fetching bookmarks:', error);
                 return [];
@@ -257,11 +205,23 @@ nav {
             const listItem = document.createElement('li');
             listItem.textContent = bookmark.name;
 
-            const linkElement = document.createElement('a');
-            linkElement.href = bookmark.url;
-            linkElement.target = "_blank";
-            linkElement.textContent = 'Open';
-            linkElement.style.marginRight = '10px';
+            const buttonContainer = document.createElement('div');
+            buttonContainer.className = 'button-container';
+
+            const openLink = document.createElement('a');
+            openLink.href = bookmark.url;
+            openLink.target = "_blank";
+            openLink.textContent = 'Open';
+            openLink.className = 'open-button';
+
+            const copyButton = document.createElement('button');
+            copyButton.textContent = 'Copy';
+            copyButton.className = 'copy-button';
+            copyButton.onclick = function() {
+                navigator.clipboard.writeText(bookmark.url)
+                    .then(() => alert('Link copied!'))
+                    .catch(err => console.error('Failed to copy link:', err));
+            };
 
             const deleteButton = document.createElement('button');
             deleteButton.textContent = 'Delete';
@@ -283,18 +243,22 @@ nav {
                     const bookmarks = await getBookmarks();
                     const updatedBookmarks = bookmarks.map(b => (b.url === bookmark.url ? { name: newName, url: newUrl } : b));
                     await saveBookmarks(updatedBookmarks);
-                    listItem.firstChild.nodeValue = newName; // Update displayed name
-                    linkElement.href = newUrl; // Update displayed URL
+                    listItem.firstChild.nodeValue = newName;
+                    openLink.href = newUrl;
                 }
             };
 
-            listItem.appendChild(linkElement);
-            listItem.appendChild(editButton);
-            listItem.appendChild(deleteButton);
+            buttonContainer.appendChild(openLink);
+            buttonContainer.appendChild(editButton);
+            buttonContainer.appendChild(deleteButton);
+            buttonContainer.appendChild(copyButton);
+
+            listItem.appendChild(buttonContainer);
             bookmarkList.appendChild(listItem);
         }
 
         window.onload = fetchBookmarks;
     </script>
+    <script src="loadNavbar.js"></script>
 </body>
 </html>

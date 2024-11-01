@@ -1,0 +1,378 @@
+/* Global Styles */
+* {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+/* Sticky Navbar Placeholder */
+#navbar-placeholder {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px; /* Adds space below navbar */
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+/* Sidebar Styles */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 250px;
+    height: 100vh;
+    background-color: #00796b;
+    color: #fff;
+    transform: translateX(-250px); /* Start hidden */
+    transition: transform 0.3s ease;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    padding-top: 60px;
+    /* border-right: 2px solid #2F4F4F; */
+    overflow-y: auto; /* Enables scrolling in sidebar */
+}
+
+.sidebar.open {
+    transform: translateX(0); /* Show sidebar */
+}
+
+/* Toggle Button */
+.sidebar-toggle {
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    background-color: red;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    z-index: 1100;
+}
+
+/* Sidebar Menu */
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar ul li {
+    padding: 10px 15px;
+    margin: 10px 0;
+    border-radius: 5px;
+}
+
+.sidebar ul li a {
+    color: #fff;
+    text-decoration: none;
+    display: block;
+    padding: 5px;
+    font-size: small;
+}
+
+.sidebar ul li:hover {
+    background-color: #333;
+    border-radius: 5px;
+}
+
+/* Firefox Scrollbar Customization */
+.sidebar {
+    scrollbar-width: thin; /* Makes the scrollbar thinner */
+    scrollbar-color: white #00796b; /* Thumb color and track color */
+}
+
+/* Upload Button Inside Sidebar */
+.upload-icon {
+    margin: 20px auto;
+    width: 50px;
+    height: 50px;
+    background-color: #ff6347; /* Customize background color */
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+    text-decoration: none;
+    transition: transform 0.3s, background-color 0.3s;
+}
+
+.upload-icon:hover {
+    background-color: #ff4500; /* Change color on hover */
+    transform: scale(1.1); /* Slightly enlarge on hover */
+}
+
+.upload-icon svg {
+    width: 24px;
+    height: 24px;
+    fill: #fff; /* Icon color */
+}
+
+/* Main Content Adjustments */
+.main-content {
+    margin-left: 0;
+    padding: 20px;
+    transition: margin-left 0.3s ease;
+}
+
+.main-content.shifted {
+    margin-left: 250px; /* Shift content when sidebar is open */
+}
+
+/* Header Background Image */
+.bg-img {
+    z-index: 1;
+    height: 250px;
+    background-image: url('imgs/bg1.png');
+    background-size: cover;
+    background-position: center;
+}
+
+/* Header Styling */
+.header {
+    display: flex;
+    justify-content: space-between;
+    padding: 130px;
+    color: #2F4F4F;
+}
+
+.arabic-text {
+    font-family: 'Lalezar', cursive;
+}
+
+/* Card Container */
+.card-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 20px;
+}
+
+.card {
+    border: 1px solid #fff;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 10px;
+    width: 200px;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
+    background-color: rgba(255, 255, 255, 0.1);
+    transition: transform 0.3s, background-color 0.3s;
+}
+
+.card:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+    transform: scale(1.05);
+}
+
+.card h3 {
+    margin-top: 0;
+    color: #eed66e;
+}
+
+a {
+    display: block;
+    text-decoration: none;
+    color: #ffd700;
+}
+
+/* Content Section */
+.content {
+    display: none;
+    margin-top: 20px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: rgba(0, 0, 0, 0.8);
+    text-align: left;
+    color: #f5f5f5;
+}
+
+/* Table Styling */
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #333;
+    color: #fff;
+}
+
+/* Close Button Styling */
+.close-button {
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.close-button:hover {
+    background-color: #e60000;
+}
+
+/* Basic Dropdown Styling */
+.dropdown {
+    position: relative; /* Position relative for absolute children */
+}
+
+.dropdown-content {
+    display: none; /* Keep it hidden by default */
+    position: absolute; /* Position it absolutely */
+    background-color: #334; /* Background color */
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    min-width: 160px;
+    z-index: 1001; /* Higher than sidebar */
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    max-height: 300px; /* Adjust height as needed */
+    overflow-y: auto; /* Enable vertical scrolling */
+    border-radius: 5px; /* Rounded corners */
+    right: 0; /* Align to the right of the parent */
+}
+
+/* Show Dropdown on Hover */
+.dropdown:hover .dropdown-content {
+    display: block; /* Show the dropdown */
+}
+
+
+/* Dropdown Link Styling */
+.dropdown-content li a {
+    color: black;
+    padding: 8px 12px;
+    text-decoration: none;
+    display: block;
+}
+
+/* Back Button Styling */
+.back-button {
+    position: fixed;
+    top: 15px;
+    left: 100px; /* Adjust this based on your design */
+    background-color: #00796b; /* Match the sidebar color */
+    color: #fff;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    z-index: 1100;
+}
+
+/* Ayat Container */
+.ayat-container {
+    position: relative; /* Stacking context */
+    margin-bottom: 20px; /* Space below ayat */
+}
+
+/* Quote Container Styling */
+.quote-container {
+    background: rgba(255, 255, 255, 0.7);
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    margin: 15px 0; /* Margin to separate from ayat */
+    width: 100%;
+    max-width: 600px;
+    min-height: 100px; /* Ensures a minimum height */
+    overflow: hidden; /* Prevents overflow issues */
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 200px; /* Reduce sidebar width */
+        text-align: left;
+    }
+
+    .sidebar-toggle {
+        left: 5px; /* Adjust button position */
+    }
+
+    .bg-img {
+        background-image: none; /* Remove background image on smaller screens */
+    }
+
+    .sidebar ul li {
+        padding: 8px 12px; /* Reduce padding for smaller screens */
+    }
+
+    .card {
+        width: 180px; /* Adjust card width for smaller screens */
+    }
+
+    .header {
+        padding: 80px; /* Adjust header padding */
+    }
+
+    /* Adjust font size */
+    .sidebar ul li a {
+        font-size: 0.8em; /* Smaller font size */
+        text-align: left;
+    }
+
+    .right {
+        display: none; /* Hide the right section on smaller screens */
+    }
+
+    .quote-container {
+        min-height: 120px; /* Increased height for better visibility */
+    }
+
+    .ayat-container {
+        margin-bottom: 30px; /* Add extra space below ayat */
+    }
+}
+
+@media (max-width: 480px) {
+    .quote-container {
+        min-height: 100px; /* Adjust as needed for smaller devices */
+    }
+
+    .sidebar {
+        width: 100%; /* Full width sidebar */
+        transform: translateX(-100%); /* Start hidden */
+    }
+
+    .sidebar.open {
+        transform: translateX(0); /* Show sidebar when open */
+    }
+
+    .sidebar-toggle {
+        position: absolute; /* Make toggle button absolute for smaller screens */
+    }
+
+    .sidebar ul li {
+        text-align: center; /* Center align text */
+    }
+
+    .header {
+        flex-direction: column; /* Stack header elements vertically */
+        align-items: center; /* Center align items */
+        padding: 20px; /* Adjust padding */
+    }
+}
+
+/* Basic Dropdown Styling */
+.dropdown-content {
+    display: none; /* Keep it hidden by default */
+}
+
+/* Show Dropdown when the "show" class is added */
+.dropdown-content.show {
+    display: block; /* Only display when the class is active */
+}

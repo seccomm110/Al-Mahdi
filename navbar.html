@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navbar</title>
+    <link rel="stylesheet" href="navbar.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.4.2/mammoth.browser.min.js"></script>
+    <script type="module"></script>
+</head>
+<body>
+
+    <!-- Sidebar toggle button -->
+    <button class="sidebar-toggle" onclick="toggleSidebar()">☰ Menu</button>
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <ul>
+            <li><a href="https://seccomm110.github.io/Ya-Mahdi/">Home</a></li>
+            <li><a href="https://seccomm110.github.io/Ya-Mahdi/pages/attendance.html">Attendance</a></li>
+            <li><a target="_blank" href="https://view.officeapps.live.com/op/view.aspx?src=https://raw.githubusercontent.com/seccomm110/Ya-Mahdi/main/all/Followup.xlsx">Follow up</a></li>
+            
+            <!-- Class Dropdown -->
+            <li class="dropdown">
+                <a href="#" class="dropbtn">Class Details</a>
+                <ul id="books-dropdown" class="dropdown-content">
+                    <li><a target="_blank" href="https://view.officeapps.live.com/op/view.aspx?src=https://raw.githubusercontent.com/seccomm110/Ya-Mahdi/main/all/AUD1-%20Class%20Detail.xlsx">AUD1</a></li>
+                    <li><a target="_blank" href="https://view.officeapps.live.com/op/view.aspx?src=https://raw.githubusercontent.com/seccomm110/Ya-Mahdi/main/all/DS3%20-%20Class%20Detail.xlsx">DS3</a></li>
+                    <li><a target="_blank" href="https://raw.githubusercontent.com/seccomm110/Ya-Mahdi/main/all/DS5%20-%20%20Class%20Detail.xlsx">DS5</a></li>
+                </ul>
+            </li>
+
+            <!-- Master Marksheet Dropdown -->
+            <li class="dropdown">
+                <a href="#" class="dropbtn">Class Master Marksheet</a>
+                <ul id="books-dropdown" class="dropdown-content">
+                    <li><a target="_blank" href="https://view.officeapps.live.com/op/view.aspx?src=https://raw.githubusercontent.com/seccomm110/Ya-Mahdi/main/all/AUD1-%20Master%20marksheet.xlsx">AUD1 Master Marksheet</a></li>
+                    <li><a target="_blank" href="https://view.officeapps.live.com/op/view.aspx?src=https://raw.githubusercontent.com/seccomm110/Ya-Mahdi/main/all/DS3%20Master%20marksheet.xlsx">DS3 Master Marksheet</a></li>
+                    <li><a target="_blank" href="https://raw.githubusercontent.com/seccomm110/Ya-Mahdi/main/all/DS5%20-%20%20Master%20Marksheet.xlsx">DS5 Master Marksheet</a></li>
+                </ul>
+            </li>
+
+            <li><a href="https://seccomm110.github.io/Ya-Mahdi/pages/performance.html">Performance</a></li>
+
+
+            <li class="dropdown">
+                <a href="#" class="dropbtn">Books</a>
+                <ul id="books-dropdown" class="dropdown-content">
+                    <li><a href="https://seccomm110.github.io/Ya-Mahdi/pages/files.html?folder=/Books/Tawheed">Tawheed</a></li>
+                    <li><a href="https://seccomm110.github.io/Ya-Mahdi/pages/files.html?folder=/Books/Adl">Adl</a></li>
+                    <li><a href="https://seccomm110.github.io/Ya-Mahdi/pages/files.html?folder=/Books/Nabuwat">Nabuwat</a></li>
+                    <li><a href="https://seccomm110.github.io/Ya-Mahdi/pages/files.html?folder=/Books/Imamat">Imamat</a></li>
+                    <li><a href="https://seccomm110.github.io/Ya-Mahdi/pages/files.html?folder=/Books/Qayamat">Qayamat</a></li>
+                    <li><a href="https://seccomm110.github.io/Ya-Mahdi/pages/files.html?folder=/Books/Maad">Maad</a></li>
+                    <li><a href="https://seccomm110.github.io/Ya-Mahdi/pages/files.html?folder=/Books/Ahqaam">Ahqaam</a></li>
+                    <li><a href="https://seccomm110.github.io/Ya-Mahdi/pages/files.html?folder=/Books/General">General</a></li>
+                </ul>
+            </li>
+
+
+            <li><a href="https://seccomm110.github.io/Ya-Mahdi/pages/articles.html">Articles</a></li>
+            <li><a href="https://seccomm110.github.io/Ya-Mahdi/pages/achievement.html">Achievement</a></li>
+            <li><a href="https://seccomm110.github.io/Ya-Mahdi/pages/events.html">Internal Program</a></li>
+
+         
+            
+            
+            <li><a href="https://seccomm110.github.io/Ya-Mahdi/pages/checklist.html">CheckList</a></li>
+            <li><a target="_blank" href="https://seccomm110.github.io/Ya-Mahdi/pages/minutesOfMeeting.html">Minutes Of Meeting</a></li>
+            <li><a href="https://seccomm110.github.io/Ya-Mahdi/pages/bookmarks.html">WebLink</a></li>
+
+            <!-- Upload Icon Button -->
+            <br><br>
+            <a href="https://seccomm110.github.io/Ya-Mahdi/pages/upload.html" class="upload-icon" title="Upload">
+                <!-- SVG for upload icon -->
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="36" height="36" fill="#fff">
+                    <path d="M12 2l3.5 3.5-1.42 1.42L13 5.83V14h-2V5.83L9.92 6.92 8.5 5.5 12 2zm1 10h3v8h-10v-8h3v6h4v-6z"/>
+                </svg>
+            </a>
+            <br><br><br><br><br><br>
+        </ul>
+    </div>
+    <script src="loadNavbar.js"></script>
+    <script src="/js/fileViewer.js" type="module"></script>
+</body>
+</html>

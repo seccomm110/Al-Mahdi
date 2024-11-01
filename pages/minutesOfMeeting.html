@@ -1,52 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    
+    <link rel="stylesheet" href="style.css">
+    <link sizes="64x64" rel="icon" href="../imgs/logo.png" type="image/png">
+    
+    <link rel="stylesheet" href="a.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dynamic Folder Viewer</title>
+    <title>Article</title>
 
     <!-- Include XLSX Library -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.4/xlsx.full.min.js"></script>
     <!-- Include PDF.js Library -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.worker.min.js"></script>
-    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.4.2/mammoth.browser.min.js"></script>
 
+
+
+    <style>
+  
+
+    </style>
     <script type="module">
         import { initializeFileViewer } from '../js/fileViewer.js'; // Adjust path if necessary
 
         document.addEventListener('DOMContentLoaded', function () {
-            initializeFileViewer('MinutesOfMeeting'); // Change this to the folder name you want
+            initializeFileViewer('MinutesOfMeetings'); // Change this to the folder name you want
         });
     </script>
 
 </head>
 <body>
-    <nav>
-        <ul>
-            <li><a href="../index.html">Home</a></li>
-            <li><a href="achievement.html">Achievement</a></li>
-            <li><a href="articles.html">Articles</a></li>
-            <li><a href="attendance.html">Attendance</a></li>
-            <li><a href="books.html">Books</a></li>
-            <li><a href="checklist.html">CheckList</a></li>
-            <li><a href="minutesOfMeeting.html">MinutesOfMeeting</a></li>
-            <li><a href="upload.html">Upload</a></li>
-            <li><a href="bookmarks.html">Bookmarks</a></li>
-        </ul>
-    </nav>
-<h1 id="folder-title">Folder Viewer</h1>
-<div class="file-list" id="file-list">Loading files...</div>
+    <div id="navbar-placeholder"></div>
 
-<h2>File Viewer</h2>
-<div id="viewer">
-    <canvas id="canvas"></canvas>
-</div>
-<div class="pdf-controls">
-    <button id="prev-page">Previous Page</button>
-    <span>Page: <span id="page-num"></span> / <span id="page-count"></span></span>
-    <button id="next-page">Next Page</button>
-</div>
+
+    <div class="container">
+        <div class="file-list" id="file-list">Loading files...</div>
+    
+        <!-- This is the canvas, hidden by default -->
+        <div id="viewer" style="display: none;"> 
+            <canvas id="canvas"></canvas>
+        </div>
+        
+        <div class="pdf-controls">
+            <button id="prev-page"></button>
+            <span> <span id="page-num"></span> <span id="page-count"></span></span>
+            <button id="next-page"></button>
+        </div>
+    </div>
+    
+
+    <script src="loadNavbar.js"></script>
 
 </body>
 </html>
